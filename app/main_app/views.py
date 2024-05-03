@@ -1,6 +1,11 @@
-'''Configurate functions and classes for rendering html pages'''
+''' Configurate functions and classes for rendering html pages '''
 
 from django.shortcuts import render
+from rest_framework.viewsets import ModelViewSet
+from rest_framework.response import Response
+
+from .serializers import ContactSerializer
+from .models import Contact
 from .git_contributions_package import contribution_color
 
 
@@ -49,3 +54,7 @@ def page_not_found(request, exception):
     title = "404"
     data = {"hello": hello, "info": info, "title": title}
     return render(request, "notfound.html", context=data)
+
+class ContactViewSet(ModelViewSet):
+    queryset = Contact.objects.all()
+    serializer_class = ContactSerializer

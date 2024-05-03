@@ -1,9 +1,8 @@
-"""
-URL configuration for app_setings project.
-"""
+""" URL configuration for app_setings project """
 
 from django.contrib import admin
 from django.urls import path, re_path, include
+
 from main_app.views import page_not_found
 
 urlpatterns = [

@@ -1,11 +1,9 @@
-"""
-Django settings for app_setings project.
-
-"""
+""" Django settings for app_setings project """
 
 from pathlib import Path
 import os
 from dotenv import load_dotenv
+
 load_dotenv()
 os.getenv("")
 
@@ -24,7 +22,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'main_app.apps.MainAppConfig'
+    'rest_framework',
+    'main_app.apps.MainAppConfig',
 ]
 
 MIDDLEWARE = [
@@ -58,9 +57,7 @@ TEMPLATES = [
     },
 ]
 
-
 WSGI_APPLICATION = 'app_settings.wsgi.application'
-
 
 DATABASES = {
     'default': {
@@ -72,7 +69,6 @@ DATABASES = {
         'PORT': os.getenv("DB_PORT")
     }
 }
-
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -89,7 +85,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 LANGUAGE_CODE = 'en-us'
 
 TIME_ZONE = 'UTC'
@@ -100,13 +95,9 @@ USE_TZ = True
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-
 STATIC_URL = 'static/'
 
 STATIC_ROOT = BASE_DIR / 'static/'
-
-STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
-
 
 LOGGING = {
     'version': 1,
