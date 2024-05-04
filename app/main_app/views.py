@@ -1,11 +1,7 @@
 ''' Configurate functions and classes for rendering html pages '''
 
 from django.shortcuts import render
-from rest_framework.viewsets import ModelViewSet
-from rest_framework.response import Response
 
-from .serializers import ContactSerializer
-from .models import Contact
 from .git_contributions_package import contribution_color
 
 
@@ -35,16 +31,11 @@ def resume(request):
 
 def about(request):
     '''about site page'''
-    hello = "Добро пожаловать на страницу о сайте!"
+    hello = "Добро пожаловать на страницу обо мне!"
     info = "Здесь будет ваш контент..."
-    title = "О сайте"
-    data = {"hello": hello, "info": info, "title": title}
-    return render(request, "index.html", context=data)
-
-def git(request):
-    '''github contributions page'''
+    title = "Обо мне"
     year = contribution_color()
-    data = {"year":year}
+    data = {"hello": hello, "info": info, "title": title, "year":year}
     return render(request, "gitc.html", context=data)
 
 def page_not_found(request, exception):
@@ -54,7 +45,3 @@ def page_not_found(request, exception):
     title = "404"
     data = {"hello": hello, "info": info, "title": title}
     return render(request, "notfound.html", context=data)
-
-class ContactViewSet(ModelViewSet):
-    queryset = Contact.objects.all()
-    serializer_class = ContactSerializer

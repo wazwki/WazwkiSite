@@ -9,3 +9,6 @@ class Contact(models.Model):
     telegram = models.SlugField(max_length=254)
     vacancy = models.URLField()
     description_vacancy = models.TextField()
+
+    def __str__(self):
+        return f'id: {self.id}, {self.mail}'
