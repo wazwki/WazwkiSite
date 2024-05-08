@@ -24,6 +24,11 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'social_django',
+    'drf_yasg',
+    'django_filters',
+    'redis',
+    'celery',
+    'whitenoise',
     'main_app.apps.MainAppConfig',
 ]
 
@@ -101,7 +106,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 STATIC_URL = 'static/'
 
 STATIC_ROOT = BASE_DIR / 'static/'
-
+'''
 LOGGING = {
     'version': 1,
     'handlers': {
@@ -114,7 +119,7 @@ LOGGING = {
         }
     }
 }
-
+'''
 CELERY_BROKER_URL = 'redis://redis:6379/0'
 
 CACHES = {
@@ -146,4 +151,15 @@ AUTHENTICATION_BACKENDS = (
 SOCIAL_AUTH_URL_NAMESPACE = 'social'
 
 SOCIAL_AUTH_GITHUB_KEY = os.getenv("SOCIAL_AUTH_GITHUB_KEY")
+
 SOCIAL_AUTH_GITHUB_SECRET = os.getenv("SOCIAL_AUTH_GITHUB_SECRET")
+
+SWAGGER_SETTINGS = {
+    'SECURITY_DEFINITIONS': {
+        'Bearer': {
+            'type': 'apiKey',
+            'name': 'Authorization',
+            'in': 'header',
+        },
+    },
+}

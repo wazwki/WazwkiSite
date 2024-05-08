@@ -13,7 +13,6 @@ from main_app.serializers import ContactSerializer
 class ContactApiTestCase(APITestCase):
     """
     Test case for API endpoints related to the Contact model.
-    !!!For testing this case need turn off the permission_classes in api.py!!!
     """
     def setUp(self):
         """
