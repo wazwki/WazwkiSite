@@ -3,7 +3,7 @@
 from django.shortcuts import render
 
 from .git_contributions_package import contribution_color
-
+from .forms import ContactForm
 
 def index(request):
     '''main page'''
@@ -14,12 +14,18 @@ def index(request):
     return render(request, "index.html", context=data)
 
 def contact(request):
-    '''contact page'''    
+    '''contact page'''
+    if request.method == 'POST':
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            pass
+    else:
+        form = ContactForm()
     hello = "Добро пожаловать на контактную страницу!"
     info = "Здесь будет ваш контент..."
     title = "Контакты"
-    data = {"hello": hello, "info": info, "title": title}
-    return render(request, "index.html", context=data)
+    data = {"hello": hello, "info": info, "title": title, "form": form}
+    return render(request, "contact.html", context=data)
 
 def resume(request):
     '''resume page'''
@@ -27,7 +33,7 @@ def resume(request):
     info = "Здесь будет ваш контент..."
     title = "Резюме"
     data = {"hello": hello, "info": info, "title": title}
-    return render(request, "index.html", context=data)
+    return render(request, "resume.html", context=data)
 
 def about(request):
     '''about site page'''
@@ -36,7 +42,7 @@ def about(request):
     title = "Обо мне"
     year = contribution_color()
     data = {"hello": hello, "info": info, "title": title, "year":year}
-    return render(request, "gitc.html", context=data)
+    return render(request, "about.html", context=data)
 
 def page_not_found(request, exception):
     '''for 404 error page'''

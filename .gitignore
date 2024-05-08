@@ -2,9 +2,6 @@
 .venv
 .env
 .DS_Store
-Dockerfile
 docker-compose.yml
-nginx.conf
-nginx
 *.pyc
 __pycache__/

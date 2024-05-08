@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=0.43, minimum-scale=0.4, maximum-scale=2.0">
 {% load static %}
 <link rel="shortcut icon" type="image/png" href="{% static 'images/favicon.ico' %}"/>
 <link rel="stylesheet" type="text/css" href="{% static 'css/index.css' %}"/>
@@ -12,7 +12,7 @@
 
 <header>
   <div class="container">
-    <div class="logo">wazwki</div>
+    <div class="logo">wazwki.</div>
     <nav>
       <ul>
         <li><a href="/">Главная</a></li>
@@ -29,13 +29,11 @@
   <p>{{info}}</p>
 </div>
 
-<div class="contributions">
-    {% for week_html in year %}
-    <div class="contribution-week">
-        {{ week_html|safe }}
-    </div>
-    {% endfor %}
-</div>
+<form method="post">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button type="submit">Отправить</button>
+</form>
 
 <footer>
   <p>wazwki. Все права защищены.</p>
