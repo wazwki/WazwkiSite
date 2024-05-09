@@ -1,7 +1,6 @@
 .vscode
 .venv
-.env
+
 .DS_Store
-docker-compose.yml
 *.pyc
 __pycache__/
