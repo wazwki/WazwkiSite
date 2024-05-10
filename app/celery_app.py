@@ -11,8 +11,10 @@ app.config_from_object('django.conf:settings')
 app.conf.broker_url = settings.CELERY_BROKER_URL
 app.autodiscover_tasks()
 
-
+'''
+Simple task for demonstration how it work and how write tasks
 @app.task()
 def debug_task():
     time.sleep(20)
     print("debug task celery")
+'''
