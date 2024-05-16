@@ -10,6 +10,7 @@ app = Celery('app_settings')
 app.config_from_object('django.conf:settings')
 app.conf.broker_url = settings.CELERY_BROKER_URL
 app.autodiscover_tasks()
+app.conf.broker_connection_retry_on_startup = True
 
 '''
 Simple task for demonstration how it work and how write tasks

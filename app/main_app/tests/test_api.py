@@ -28,7 +28,8 @@ class ContactApiTestCase(APITestCase):
         """
         self.user = User.objects.create_user(username='TestApi', password='testing123')
         self.contact_test = Contact.objects.create(mail='vazkildi@gmail.com',
-            telegram='wazwki', vacancy='test.com', description_vacancy='test')
+            telegram='wazwki', vacancy='test.com', description_vacancy='test', owner=self.user)
+
     def test_get(self):
         """
         Test the GET method of the contact-list endpoint.
@@ -48,6 +49,8 @@ class ContactApiTestCase(APITestCase):
         serializer_data = ContactSerializer(self.contact_test).data
         self.assertEqual(status.HTTP_200_OK, response.status_code)
         self.assertEqual([serializer_data], response.data)
+        self.assertEqual(self.user, Contact.objects.last().owner)
+
     def test_post(self):
         """
         Test the POST method of the contact-list endpoint.
@@ -72,6 +75,7 @@ class ContactApiTestCase(APITestCase):
         json_data = json.dumps(data)
         response = self.client.post(url, json_data, content_type='application/json')
         self.assertEqual(status.HTTP_201_CREATED, response.status_code)
+
     def test_put(self):
         """
         Test the PUT method of the contact-detail endpoint.
@@ -96,6 +100,7 @@ class ContactApiTestCase(APITestCase):
         json_data = json.dumps(data)
         response = self.client.put(url, json_data, content_type='application/json')
         self.assertEqual(status.HTTP_200_OK, response.status_code)
+
     def test_delete(self):
         """
         Test the DELETE method of the contact-detail endpoint.
